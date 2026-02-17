@@ -12,8 +12,14 @@ BeamScan measures how charged particles scatter inside different materials (Mult
 
 **You don't need to know C++ or Geant4 to contribute.** The simulation system is designed so you can run predictions by editing a simple YAML text file.
 
-### Step 1: Fork this repository
-Click the **Fork** button (top-right on GitHub).
+### Step 1: Create a branch (team members) or fork (external)
+
+**Team members** (added as collaborators): create a branch directly.
+```bash
+git checkout -b mi-experimento
+```
+
+**External contributors**: click the **Fork** button (top-right on GitHub). Note: automatic PR comments may not appear on fork PRs due to GitHub permissions -- check the Actions tab for your results instead.
 
 ### Step 2: Create your request file
 Copy the template and give it your name:
@@ -56,8 +62,8 @@ This posts your results as a comment on the PR so the whole team can see and dis
 │ in requests/ │     │    (Python, ~30s)   │     │   *.csv       │
 │              │     │                     │     │   *.png       │
 │              │     │ 2. Geant4 Sim ──────┼────►│ geant4/       │
-│              │     │    (Docker, ~5min)  │     │   events.csv  │
-│              │     │    [optional]       │     │               │
+│              │     │    (Docker, ~15min) │     │   events.csv  │
+│              │     │    [manual trigger] │     │               │
 │              │     │ 3. Analysis ────────┼────►│ comparison/   │
 │              │     │    (Python)         │     │   *.png       │
 │              │     │                     │     │   SUMMARY.md  │
@@ -71,9 +77,9 @@ This posts your results as a comment on the PR so the whole team can see and dis
 | Mode | Speed | What it does | When to use |
 |------|-------|-------------|-------------|
 | **Highland** (default) | ~30 seconds | Analytical formula prediction | Quick exploration, "what-if" studies |
-| **Geant4** (opt-in) | ~5–15 min | Full Monte Carlo simulation | Final results, tail studies, validation |
+| **Geant4** (manual) | ~15–60 min | Full Monte Carlo simulation | Final results, tail studies, validation |
 
-Highland mode runs automatically on every push. Geant4 mode runs when you set `geant4_simulation: true` in your request file or trigger it manually from the Actions tab.
+Highland mode runs automatically on every push. Geant4 mode is **manual only**: a maintainer triggers it from the Actions tab (see `docs/CI_GEANT4.md`). It runs inside a Docker container on GitHub-hosted runners, no local installation needed.
 
 ---
 
@@ -198,7 +204,7 @@ make -j$(nproc)
 ### Or use Docker
 ```bash
 docker run -v $(pwd):/work -w /work/simulation/build \
-  geant4/geant4:latest \
+  jeffersonlab/geant4:g4v11.3.2-fedora40 \
   bash -c "cmake .. && make -j4 && ./beamscan -m ../macros/scan_plastics.mac"
 ```
 
