@@ -1,11 +1,9 @@
 # ═══════════════════════════════════════════════════════════════
 # BeamScan -- Geant4 Monte Carlo (Docker on GitHub-hosted runner)
 # ═══════════════════════════════════════════════════════════════
-# Uses JeffersonLab's pre-built Geant4 Docker image (includes
-# Geant4 11.3.2 + all datasets + cmake + gcc).
-#
-# ~7 GB image pull + ~2 min build + ~5-15 min simulation.
-# Fits within GitHub Actions free tier (6h limit, 14 GB disk).
+# Uses JeffersonLab's pre-built Geant4 Docker image.
+# GitHub Actions overrides the container entrypoint, so we must
+# locate Geant4 ourselves and source the environment script.
 # ═══════════════════════════════════════════════════════════════
 
 name: "Geant4 Simulation"
@@ -35,32 +33,76 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Verify Geant4
+      - name: Locate Geant4 and export environment
+        id: g4env
         shell: bash
         run: |
-          for f in /usr/local/geant4*/bin/geant4.sh; do
-            [ -f "$f" ] && source "$f" && break
-          done
-          echo "G4INSTALL=${G4INSTALL:-not found}"
-          geant4-config --version || true
-          cmake --version
-          echo "Disk free: $(df -h / | tail -1 | awk '{print $4}')"
+          set -euo pipefail
+          echo "=== Searching for Geant4 ==="
+
+          # 1) Find geant4-config anywhere
+          G4CFG="$(command -v geant4-config 2>/dev/null || true)"
+          if [[ -z "$G4CFG" ]]; then
+            G4CFG="$(find / -type f -name geant4-config 2>/dev/null | head -1 || true)"
+          fi
+
+          if [[ -n "$G4CFG" ]]; then
+            echo "Found geant4-config: $G4CFG"
+            echo "$(dirname "$G4CFG")" >> "$GITHUB_PATH"
+            # Source the env script next to it
+            G4SH="$(dirname "$G4CFG")/geant4.sh"
+            if [[ -f "$G4SH" ]]; then
+              source "$G4SH"
+              echo "Sourced $G4SH"
+            fi
+            G4CMAKE="$("$G4CFG" --cmakedir 2>/dev/null || true)"
+          fi
+
+          # 2) If geant4-config didn't give us cmake dir, find it
+          if [[ -z "${G4CMAKE:-}" ]]; then
+            echo "Searching for Geant4Config.cmake..."
+            G4CMAKE="$(dirname "$(find / -type f -name Geant4Config.cmake 2>/dev/null | head -1)" 2>/dev/null || true)"
+          fi
+
+          if [[ -z "${G4CMAKE:-}" ]]; then
+            echo "ERROR: Geant4Config.cmake not found anywhere in container."
+            echo "Debug info:"
+            find / -maxdepth 4 -name "geant4*" -type d 2>/dev/null || true
+            exit 1
+          fi
+
+          echo "Geant4_DIR=$G4CMAKE"
+          echo "Geant4_DIR=$G4CMAKE" >> "$GITHUB_ENV"
+
+          # 3) Find and source geant4.sh for data paths
+          G4SH="$(find / -type f -name geant4.sh -path "*/bin/*" 2>/dev/null | head -1 || true)"
+          if [[ -n "$G4SH" ]]; then
+            # Write a sourceable env file for later steps
+            source "$G4SH"
+            echo "G4_ENV_SCRIPT=$G4SH" >> "$GITHUB_ENV"
+            echo "Sourced env from: $G4SH"
+            env | grep -i "^G4" | sort
+          fi
+
+          echo "=== Geant4 ready ==="
 
       - name: Build BeamScan
         shell: bash
         run: |
-          for f in /usr/local/geant4*/bin/geant4.sh; do
-            [ -f "$f" ] && source "$f" && break
-          done
-          G4DIR=$(dirname $(find /usr/local -name "Geant4Config.cmake" 2>/dev/null | head -1))
-          cmake -S simulation -B build -DCMAKE_BUILD_TYPE=Release -DGeant4_DIR="$G4DIR"
-          cmake --build build -j$(nproc)
+          set -euo pipefail
+          [[ -n "${G4_ENV_SCRIPT:-}" ]] && source "$G4_ENV_SCRIPT"
+          cmake -S simulation -B build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DGeant4_DIR="${Geant4_DIR}"
+          cmake --build build -j"$(nproc)"
           ls -la build/beamscan
 
       - name: Install Python deps
+        shell: bash
         run: |
-          pip install pyyaml numpy matplotlib scipy 2>/dev/null || \
-          pip install --break-system-packages pyyaml numpy matplotlib scipy
+          python3 -m pip --version 2>/dev/null || python3 -m ensurepip --upgrade
+          python3 -m pip install --upgrade pip
+          python3 -m pip install pyyaml numpy matplotlib scipy
 
       - name: Generate macros
         shell: bash
@@ -73,9 +115,7 @@ jobs:
       - name: Run Geant4
         shell: bash
         run: |
-          for f in /usr/local/geant4*/bin/geant4.sh; do
-            [ -f "$f" ] && source "$f" && break
-          done
+          [[ -n "${G4_ENV_SCRIPT:-}" ]] && source "$G4_ENV_SCRIPT"
           export BEAMSCAN_BIN=./build/beamscan
           bash macros_auto/run_all.sh
 
