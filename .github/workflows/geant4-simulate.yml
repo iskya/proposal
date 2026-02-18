@@ -19,71 +19,49 @@ permissions:
 jobs:
   simulate:
     runs-on: ubuntu-latest
-    container:
-      image: jeffersonlab/geant4:g4v11.3.2-fedora40
+
+    defaults:
+      run:
+        shell: bash -el {0}
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Locate Geant4
-        shell: bash
+      - name: Set up Conda (Miniforge)
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          miniforge-version: latest
+          activate-environment: g4sim
+          python-version: "3.11"
+          channels: conda-forge
+          channel-priority: strict
+
+      - name: Install Geant4 and dependencies
         run: |
-          set -euo pipefail
+          conda install -y geant4=11.3.2 cmake make compilers numpy matplotlib scipy pyyaml
 
-          # Find geant4-config (it's under /cvmfs in this image)
-          G4CFG="$(find / -type f -name geant4-config 2>/dev/null | head -1)"
-          if [[ -z "$G4CFG" ]]; then
-            echo "ERROR: geant4-config not found"
-            exit 1
-          fi
-          echo "Found: $G4CFG"
-
-          G4BIN="$(dirname "$G4CFG")"
-          G4PREFIX="$("$G4CFG" --prefix)"
-          echo "Geant4 prefix: $G4PREFIX"
-          echo "Geant4 version: $("$G4CFG" --version)"
-
-          # Add to PATH for later steps
-          echo "$G4BIN" >> "$GITHUB_PATH"
-
-          # CMake dir: standard layout is <prefix>/lib/cmake/Geant4
-          # but verify it exists, otherwise search
-          G4CMAKE="$G4PREFIX/lib/cmake/Geant4"
-          if [[ ! -f "$G4CMAKE/Geant4Config.cmake" ]]; then
-            G4CMAKE="$(dirname "$(find "$G4PREFIX" -name Geant4Config.cmake 2>/dev/null | head -1)")"
-          fi
-          echo "Geant4_DIR=$G4CMAKE"
-          echo "Geant4_DIR=$G4CMAKE" >> "$GITHUB_ENV"
-
-          # Source environment for data paths
-          G4SH="$G4BIN/geant4.sh"
-          if [[ -f "$G4SH" ]]; then
-            source "$G4SH"
-            echo "G4_ENV_SCRIPT=$G4SH" >> "$GITHUB_ENV"
-          fi
-
-          echo "=== Geant4 ready ==="
+      - name: Verify Geant4
+        run: |
+          geant4-config --version
+          geant4-config --prefix
+          echo "Geant4_DIR=$(geant4-config --prefix)/lib/cmake/Geant4"
+          python3 -c "import numpy, matplotlib, scipy, yaml; print('Python deps OK')"
 
       - name: Build BeamScan
-        shell: bash
         run: |
-          set -euo pipefail
-          [[ -n "${G4_ENV_SCRIPT:-}" ]] && source "$G4_ENV_SCRIPT"
+          G4DIR="$(geant4-config --prefix)/lib/cmake/Geant4"
+          # Fall back to searching if standard path doesn't have it
+          if [[ ! -f "$G4DIR/Geant4Config.cmake" ]]; then
+            G4DIR="$(dirname "$(find "$(geant4-config --prefix)" -name Geant4Config.cmake | head -1)")"
+          fi
+          echo "Using Geant4_DIR=$G4DIR"
           cmake -S simulation -B build \
             -DCMAKE_BUILD_TYPE=Release \
-            -DGeant4_DIR="${Geant4_DIR}"
+            -DGeant4_DIR="$G4DIR"
           cmake --build build -j"$(nproc)"
           ls -la build/beamscan
 
-      - name: Install Python deps
-        shell: bash
-        run: |
-          python3 -m ensurepip --upgrade 2>/dev/null || true
-          python3 -m pip install --upgrade pip
-          python3 -m pip install pyyaml numpy matplotlib scipy
-
       - name: Generate macros
-        shell: bash
         run: |
           python3 scripts/generate_macros.py "${{ inputs.request_file }}" \
             --output-dir macros_auto \
@@ -91,14 +69,11 @@ jobs:
             --events-per-config "${{ inputs.events_per_config }}"
 
       - name: Run Geant4
-        shell: bash
         run: |
-          [[ -n "${G4_ENV_SCRIPT:-}" ]] && source "$G4_ENV_SCRIPT"
           export BEAMSCAN_BIN=./build/beamscan
           bash macros_auto/run_all.sh
 
       - name: Highland comparison
-        shell: bash
         run: |
           mkdir -p comparison/highland comparison/geant4_vs_highland
           python3 analysis/highland_calculator.py "${{ inputs.request_file }}" \
