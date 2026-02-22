@@ -1,6 +1,11 @@
 # 🔬 BeamScan — Particle-Beam Material Classification
 
-**BL4S 2026 Proposal · Córdoba, Argentina**
+**Los Topos Cósmicos · BL4S 2026 · Santa Rosa de Calamuchita, Córdoba, Argentina 🇦🇷**
+
+[![GitHub Pages](https://img.shields.io/badge/🌐_Website-BeamScan_Atlas-2E75B6?style=for-the-badge)](https://artfisica.github.io/beam4school-proposal/)
+[![Highland CI](https://img.shields.io/github/actions/workflow/status/artfisica/beam4school-proposal/highland-predict.yml?style=flat-square&label=Highland%20CI&logo=githubactions&logoColor=white)](https://github.com/artfisica/beam4school-proposal/actions/workflows/highland-predict.yml)
+[![Geant4 CI](https://img.shields.io/github/actions/workflow/status/artfisica/beam4school-proposal/geant4-simulate.yml?style=flat-square&label=Geant4%20CI&logo=githubactions&logoColor=white)](https://github.com/artfisica/beam4school-proposal/actions/workflows/geant4-simulate.yml)
+[![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
 
 > *Can a beam of particles "read" what a material is made of?*
 
@@ -55,7 +60,7 @@ This posts your results as a comment on the PR so the whole team can see and dis
 ## 🏗 Architecture — How It Works
 
 ```
-┌──────────────┐     ┌─────────────────────┐     ┌───────────────┐
+┌──────────────┐     ┌────────────────────┐     ┌───────────────┐
 │   STUDENTS   │     │   GITHUB ACTIONS    │     │    RESULTS    │
 │              │     │                     │     │               │
 │ Edit YAML ───┼────►│ 1. Highland Calc ───┼────►│ predictions/  │
@@ -69,7 +74,7 @@ This posts your results as a comment on the PR so the whole team can see and dis
 │              │     │                     │     │   SUMMARY.md  │
 │ View results │◄────┼─ 4. PR Comment ─────┤     │               │
 │ on PR / Pages│     │    or commit back   │     │               │
-└──────────────┘     └─────────────────────┘     └───────────────┘
+└──────────────┘     └────────────────────┘     └───────────────┘
 ```
 
 ### Two Modes
@@ -238,4 +243,5 @@ BeamScan bridges these two worlds: the same physics that can fingerprint an anci
 
 ---
 
-*Built with ❤️ in Córdoba, Argentina for CERN Beamline for Schools 2026*
+*Los Topos Cósmicos · Instituto San Francisco de Asís, Santa Rosa de Calamuchita, Córdoba 🇦🇷*
+*Built with ❤️ for [CERN Beamline for Schools 2026](https://beamlineforschools.cern) · ¡La física fundamental es para todos!*
