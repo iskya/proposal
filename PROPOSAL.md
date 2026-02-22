@@ -181,7 +181,7 @@ If selected, we will expand this into a bilingual workshop series: **"Del aceler
 
 ```bash
 # Clone
-git clone https://github.com/artfisica/beam4school-proposal.git
+git clone https://github.com/los-topos-cosmicos/beam4school-proposal.git
 cd beam4school-proposal
 
 # Run a prediction locally (optional — CI does this automatically)
