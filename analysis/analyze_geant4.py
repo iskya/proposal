@@ -208,7 +208,7 @@ def main():
         h_match = None
         for hk, hv in highland.items():
             # Highland key: "Al2O3_3.0GeV", dirname: "Al2O3_3.0GeV_10.0mm"
-            if hk in m or (hv['material'] in m and f"{hv['p_GeV']}GeV" in m):
+            if hk in m or (m.startswith(hv['material'] + "_") and f"{hv['p_GeV']}GeV" in m):
                 h_match = hv
                 break
         highland_vals.append(h_match['theta0_mrad'] if h_match else None)
@@ -256,7 +256,7 @@ def main():
             g4_s = geant4_results[m]['sigma_core']
             h_match = None
             for hk, hv in highland.items():
-                if hk in m or (hv['material'] in m and f"{hv['p_GeV']}GeV" in m):
+                if hk in m or (m.startswith(hv['material'] + "_") and f"{hv['p_GeV']}GeV" in m):
                     h_match = hv
                     break
             h_val = h_match['theta0_mrad'] if h_match else None
