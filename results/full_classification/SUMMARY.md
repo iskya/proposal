@@ -1,8 +1,8 @@
 # 🔬 BeamScan Simulation Results
 
-**Author:** Los Topos Cósmicos — Córdoba, Argentina  
+**Author:** BeamScan Team — Córdoba, Argentina  
 **Description:** Full 11-material classification scan for proposal figures  
-**Generated:** 2026-02-22 00:56 UTC  
+**Generated:** 2026-02-22 02:09 UTC  
 **Method:** Highland formula (analytical)
 
 ## Beam Settings
