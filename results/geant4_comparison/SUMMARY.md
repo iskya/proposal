@@ -2,7 +2,7 @@
 
 **Author:** BeamScan Team — Córdoba, Argentina  
 **Description:** Full 11-material classification scan for proposal figures  
-**Generated:** 2026-02-22 03:01 UTC  
+**Generated:** 2026-02-22 04:18 UTC  
 **Method:** Highland formula (analytical)
 
 ## Beam Settings

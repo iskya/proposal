@@ -5,7 +5,6 @@
 [![GitHub Pages](https://img.shields.io/badge/🌐_Website-BeamScan_Atlas-2E75B6?style=for-the-badge)](https://los-topos-cosmicos.github.io/beam4school-proposal/)
 [![Highland CI](https://img.shields.io/github/actions/workflow/status/los-topos-cosmicos/beam4school-proposal/highland-predict.yml?style=flat-square&label=Highland%20CI&logo=githubactions&logoColor=white)](https://github.com/los-topos-cosmicos/beam4school-proposal/actions/workflows/highland-predict.yml)
 [![Geant4 CI](https://img.shields.io/github/actions/workflow/status/los-topos-cosmicos/beam4school-proposal/geant4-simulate.yml?style=flat-square&label=Geant4%20CI&logo=githubactions&logoColor=white)](https://github.com/los-topos-cosmicos/beam4school-proposal/actions/workflows/geant4-simulate.yml)
-[![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
 
 > *Can a beam of particles "read" what a material is made of?*
 
