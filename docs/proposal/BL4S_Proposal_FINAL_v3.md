@@ -60,6 +60,8 @@ A 2D classification plot: x-axis = θ₀ at 3 GeV/c, y-axis = θ₀ at 6 GeV/c. 
 
 We have built a Geant4 Monte Carlo simulation of the full experiment, published in a public GitHub repository with automated CI workflows that build, simulate, and generate the atlas plots on every code change. Students contribute by adding materials via pull requests and instantly seeing updated predictions. The repository is already public — anyone can reproduce every figure in this proposal.
 
+Our Geant4 simulations (11.3.2, FTFP_BERT, 2,000 events per configuration) validate the Highland predictions: across 10 of 11 materials at two momenta, Geant4 consistently exceeds Highland by 12 ± 3%, attributable to nuclear elastic scattering that the analytic formula omits. The exception is Fe₂O₃, where the ratio rises to ~1.4–1.5, directly revealing the larger hadronic cross-section of iron nuclei — itself a measurable physics result from the same BeamScan setup.
+
 ---
 
 ## 3. What We Hope to Take Away (~100 words)

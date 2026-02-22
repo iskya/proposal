@@ -74,7 +74,7 @@ The gap proves **MCS naturally sorts materials into compositional families**. Tw
 *Green = trivial (<100 events). Yellow = feasible (100–10k). Red = impractical (>100k). PE vs PP is honestly impossible. PVC vs anything is trivial.*
 </div>
 
-Our Geant4 simulations confirm that even PS vs PMMA needs fewer than 2,000 events (seconds of beam time). **PVC versus PE needs only ~50 events.** The full 12-material atlas requires under one hour.
+Our Geant4 simulations confirm that even PS vs PMMA needs fewer than 2,000 events (seconds of beam time). **PVC versus PE needs only ~50 events.** The full 11-material atlas requires under one hour.
 
 ---
 
@@ -124,6 +124,7 @@ This single figure shows all materials on one plot. But note an important subtle
 ## Simulation & Open Science
 
 We built a complete simulation pipeline in this repository:
+Our Geant4 simulations (11.3.2, FTFP_BERT, 2,000 events per configuration) validate the Highland predictions: across 10 of 11 materials at two momenta, Geant4 consistently exceeds Highland by 12 ± 3%, attributable to nuclear elastic scattering that the analytic formula omits. The exception is Fe₂O₃, where the ratio rises to ~1.4–1.5, directly revealing the larger hadronic cross-section of iron nuclei — itself a measurable physics result from the same BeamScan setup.
 
 ```
 Student edits YAML → git push → GitHub Actions → plots appear in PR comment (~30 sec)
