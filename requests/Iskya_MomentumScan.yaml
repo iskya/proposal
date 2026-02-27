@@ -1,0 +1,75 @@
+author: "Jeremías Álvarez"
+
+description: "Complete 1–7 GeV energy scan for multiple scattering comparison across all available materials (10k events per configuration)"
+
+beam:
+  particle: "e-"
+  momenta_GeV: [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0]
+  num_events: 10000
+
+materials:
+  # ─── PLASTICS ───
+  - name: "PE"
+    geant4_name: "G4_POLYETHYLENE"
+    thickness_mm: 10.0
+
+  - name: "PP"
+    geant4_name: "G4_POLYPROPYLENE"
+    thickness_mm: 10.0
+
+  - name: "PS"
+    geant4_name: "G4_POLYSTYRENE"
+    thickness_mm: 10.0
+
+  - name: "PMMA"
+    geant4_name: "G4_PLEXIGLASS"
+    thickness_mm: 10.0
+
+  - name: "Nylon"
+    geant4_name: "G4_NYLON-6-6"
+    thickness_mm: 10.0
+
+  - name: "PET"
+    geant4_name: "G4_MYLAR"
+    thickness_mm: 10.0
+
+  - name: "PVC"
+    geant4_name: "G4_POLYVINYL_CHLORIDE"
+    thickness_mm: 10.0
+
+  # ─── HERITAGE / GEOLOGICAL ───
+  - name: "SiO2"
+    geant4_name: "G4_SILICON_DIOXIDE"
+    thickness_mm: 10.0
+
+  - name: "CaCO3"
+    geant4_name: "G4_CALCIUM_CARBONATE"
+    thickness_mm: 10.0
+
+  - name: "Al2O3"
+    geant4_name: "G4_ALUMINUM_OXIDE"
+    thickness_mm: 10.0
+
+  - name: "Fe2O3"
+    geant4_name: "G4_FERRIC_OXIDE"
+    thickness_mm: 10.0
+
+  # ─── METALS ───
+  - name: "Aluminium"
+    geant4_name: "G4_Al"
+    thickness_mm: 10.0
+
+  - name: "Iron"
+    geant4_name: "G4_Fe"
+    thickness_mm: 10.0
+
+  - name: "Lead"
+    geant4_name: "G4_Pb"
+    thickness_mm: 10.0
+
+outputs:
+  highland_prediction: true
+  geant4_simulation: true
+  classification_plot: true
+  distribution_overlay: true
+  comparison_table: true
