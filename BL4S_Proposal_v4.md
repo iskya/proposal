@@ -1,12 +1,12 @@
 # BeamScan: A Particle-Beam Material Classifier — From Recycling to Heritage Science
 
-## 1. Motivation to Participate (~116 words)
+## 1. Motivation to Participate (~100 words)
 
-We are students and teachers from Instituto San Francisco de Asís in Santa Rosa de Calamuchita, Córdoba, Argentina. Two thousand years ago, the Comechingón people carved and shaped the rock of our region — and the artefacts preserved in our local museum still cannot be studied without risking damage. Today, mixed plastic waste arrives at recycling facilities where a single piece of PVC, invisible to the naked eye, can contaminate and ruin the entire batch. Two problems, two thousand years apart, the same challenge: characterising a material without destroying it. Particle physics offers one answer for both: multiple Coulomb scattering reveals atomic composition through deflection angles alone. Participating in BL4S means we can finally prove it works.
+We are students and teachers from the Instituto San Francisco de Asís in Santa Rosa de Calamuchita, Córdoba, Argentina. On the banks of the Río Santa Rosa, two materials defy identification without destroying them: Comechingón morteros carved in rock two thousand years ago, and mixed plastic waste arriving at local recycling cooperatives. The first is untouchable archaeological heritage. The second determines whether recycling is viable. Both pose the same challenge: compositional characterisation without destroying the sample. We want to demonstrate that particle physics can solve both problems with the same non-destructive technique. Participating in BL4S would let us validate this method with a real beam and bring the results home to our communities.
 
 ---
 
-## 2. Experiment Idea (~752 words)
+## 2. Experiment Idea (~800 words)
 
 ### The Question
 
@@ -14,21 +14,23 @@ Can we build a "BeamScan Atlas" — a classification chart that identifies mater
 
 ### The Physics
 
-When a charged particle travels through matter at GeV-scale energies, it does not go straight — it deflects slightly each time it passes near an atomic nucleus. The cumulative effect of thousands of these tiny deflections is called multiple Coulomb scattering (MCS). The resulting angular spread θ₀ follows the Highland formula:
-<img width="940" height="538" alt="θ₀ ≈ (13 6 MeV  p) · √(xX₀) ·  1 + 0 038 · ln(xX₀)" src="https://github.com/user-attachments/assets/a235afa4-a6a9-4aad-b639-27e31292b99e" />
+When a GeV-scale charged particle traverses matter, it undergoes many small deflections from atomic nuclei — multiple Coulomb scattering (MCS). The resulting angular spread θ₀ depends on the material's radiation length X₀, a fundamental property set by elemental composition. From the Highland formula, θ₀ ∝ √(x/X₀) / p, where x is target thickness and p is beam momentum. Materials with heavier atoms scatter the beam more.
 
 ### Predicted Separation
 
-Using the Highland formula with PDG radiation lengths, we calculated expected scattering angles at 3 GeV/c through 10 mm targets. The results split naturally into two families: 
-Plastics (C, H, O, N — light atoms, long X₀): PE and PP sit at θ₀ ≈ 0.56 mrad, a pure carbon-hydrogen baseline. PS, PMMA and PET follow at 0.60–0.74 mrad. PVC stands apart at θ₀ ≈ 0.90 mrad — its chlorine atom (Z = 17) dramatically increases scattering. Detecting that contamination in recycling streams is our primary industrial application.
-Geological materials (Si, Ca, Al, Fe — heavier atoms, short X₀): quartz, calcite, alumina and iron oxide scatter at θ₀ = 1.17–2.38 mrad, well separated from the plastics cluster.
-The gap between both families is itself the scientific result — it proves MCS naturally sorts materials into compositional families. Our Geant4 simulations confirm that even the closest pairs (PS vs PMMA) need fewer than 2,000 events at 3σ — seconds of beam time. PVC versus PE needs only ~50 events. The full atlas requires under one hour of data.
+Using the Highland formula with PDG radiation lengths, we calculated expected scattering angles at 3 GeV/c through 10 mm targets:
+
+**Polyolefins** PE and PP (θ₀ ≈ 0.56 mrad): pure carbon–hydrogen baseline. **Oxygen-containing plastics** PS, PMMA, PET (θ₀ = 0.60–0.74 mrad): progressively heavier effective composition. **PVC** (θ₀ ≈ 0.90 mrad): the chlorine atom (Z = 17) dramatically increases scattering — detecting PVC contamination in recycling streams is our primary industrial application. **Geological materials** — quartz, calcite, alumina, iron oxide (θ₀ = 1.17–2.38 mrad): minerals built from silicon, calcium, aluminium, and iron scatter even more.
+
+A natural gap separates the plastics cluster from the minerals cluster, reflecting a fundamental divide in chemistry: organic matter (C, H, O, N) versus inorganic matter (Si, Ca, Al, Fe). This gap is itself the scientific result — it proves MCS naturally sorts materials into compositional families. Our Geant4 simulations confirm that even the closest useful pairs (PS vs PMMA) need fewer than 2,000 events to distinguish at 3σ — seconds of beam time. PVC versus PE needs only ~50 events. The full atlas requires under one hour of data.
 
 ### Experimental Setup (facility-agnostic)
 
-Our core measurement requires only tracking detectors — standard equipment at all BL4S facilities:
-Beam → trackers 1, 2 → TARGET → trackers 3, 4
-Two trackers upstream measure the incoming particle direction. Two downstream measure the direction after the target. Subtracting the beam's natural divergence — measured in dedicated no-target runs — we extract the scattering signal from the material alone. The layout works with Delay Wire Chambers at CERN, beam telescopes at DESY, and the available tracking detectors at ELSA.
+Our core measurement requires only four Delay Wire Chambers (DWCs) and a target holder — standard equipment at all BL4S facilities:
+
+Beam (1–6 GeV/c) → DWC₁, DWC₂ → TARGET → DWC₃, DWC₄ → Pb-glass calorimeter (optional).
+
+Two trackers upstream record the incoming direction; two downstream record the direction after the target. We subtract the no-target angular width in quadrature to extract the material scattering signal. This layout works at CERN T9 (Delay Wire Chambers), at DESY (beam telescope), and at ELSA.
 
 ### Targets and Facility Considerations
 
@@ -38,19 +40,17 @@ All targets are solid samples in an aluminium holder. We will provide safety dat
 
 ### Measurement Program
 
-**Phase 1 — Calibration:** No-target runs at both momenta to characterise beam divergence and detector resolution.
-**Phase 2 — Core atlas:** All permitted materials at two momenta (3 and 6 GeV/c), 10 mm thickness, ≥10⁴ events each. The second momentum validates the 1/p scaling predicted by Highland and provides a built-in consistency check: systematic effects like alignment shifts affect both settings similarly.
-**Phase 3 — Systematics:** Thickness variation (5, 10, 20 mm) for selected materials to validate the √(x/X₀) dependence and extract X₀ directly from data.
-**Phase 4 — Extensions:** Contaminant sensitivity (a thin metal foil hidden inside a plastic sample), composite materials, and — where the facility offers additional observables such as dE/dx or calorimeter response — a second independent classification axis.
+**Phase 1 — Calibration:** No-target runs at both momenta to measure beam divergence and angular resolution. **Phase 2 — Core atlas:** Measure θ₀ for all permitted materials at two momenta (e.g. 3 and 6 GeV/c), 10 mm thickness, ≥10⁴ events each. The second momentum validates the expected 1/p scaling and controls systematics — alignment shifts affect both settings similarly, providing a built-in consistency check. **Phase 3 — Systematics:** Vary thickness (5, 10, 20 mm) for selected materials to validate √(x/X₀) dependence and extract X₀. **Phase 4 — Extensions:** Contaminant sensitivity (thin metal foil inside a sample), composite materials, and — if the facility offers additional observables such as dE/dx or calorimeter response — a genuinely independent second classification axis.
 
 ### The Deliverable: BeamScan Atlas
 
-A measured classification table and plot of θ₀ (and extracted X₀) for each material. Every data point has a physical interpretation, a real-world application, and a simulation prediction to compare against. Where the facility offers additional observables, we add a second independent axis (e.g. dE/dx or calorimeter response). The atlas is simultaneously a scientific result, a practical reference, and a memorable visualisation.
+A classification table and plot of measured θ₀ (and extracted X₀) for each target. The two-momentum data cross-check Highland scaling. Where the facility offers additional observables, we add a second axis (e.g. dE/dx from a TPC, or energy deposit in Pb-glass). The atlas is simultaneously a scientific result, a practical lookup table, and a memorable visualisation.
 
 ### Simulation and Open Science
 
-We have built a Geant4 Monte Carlo simulation of the full experiment, published in a public GitHub repository. Students contribute by editing simple YAML files and instantly seeing updated predictions — no C++ or Geant4 needed. Every figure in this proposal can be reproduced from the repository.
-Our simulations (Geant4 11.3.2, FTFP_BERT, 2,000 events per configuration) validate the Highland predictions: across 10 of 11 materials at two momenta, Geant4 consistently exceeds Highland by 12 ± 3%, attributable to nuclear elastic scattering that the analytic formula omits. The exception is Fe₂O₃, where the ratio rises to ~1.4–1.5 — directly revealing the larger hadronic cross-section of iron nuclei, itself a measurable result from the same setup
+We have built a Geant4 Monte Carlo simulation of the full experiment, published in a public GitHub repository with automated CI workflows. Students contribute by adding materials via pull requests and instantly seeing updated predictions — no C++ or Geant4 installation needed. Every figure in this proposal can be reproduced from the repository.
+
+Our Geant4 simulations (11.3.2, FTFP_BERT, 2,000 events per configuration) validate the Highland predictions: across 10 of 11 materials at two momenta, Geant4 consistently exceeds Highland by 12 ± 3%, attributable to nuclear elastic scattering that the analytic formula omits. The exception is Fe₂O₃, where the ratio rises to ~1.4–1.5, directly revealing the larger hadronic cross-section of iron nuclei — itself a measurable physics result from the same BeamScan setup.
 
 ---
 

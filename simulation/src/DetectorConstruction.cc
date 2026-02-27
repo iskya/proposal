@@ -2,7 +2,7 @@
 // DetectorConstruction.cc — BeamScan geometry
 //
 // Layout along Z-axis (beam direction):
-//   Tracker1 → Tracker2 → [gap] → TARGET → [gap] → Tracker3 → Tracker4 → Calorimeter
+//   DWC1 → DWC2 → [gap] → TARGET → [gap] → DWC3 → DWC4 → Calorimeter (optional)
 //
 // Target material and thickness are configurable via macro commands:
 //   /beamscan/target/material G4_POLYETHYLENE
@@ -79,7 +79,14 @@ void DetectorConstruction::DefineMaterials()
     granite->AddElement(Mg, 0.0178);
 
     // Detector materials
-    nist->FindOrBuildMaterial("G4_Si");                   // Silicon trackers
+    // DWC gas: Ar/CO2 80/20 mixture at STP (standard beamline DWC fill)
+    auto Ar = nist->FindOrBuildElement("Ar");
+    auto C_el = nist->FindOrBuildElement("C");
+    auto O_dwc = nist->FindOrBuildElement("O");
+    auto dwcGas = new G4Material("DWC_ArCO2", 1.72e-3*g/cm3, 3);  // ~80/20 Ar/CO2 density
+    dwcGas->AddElement(Ar, 0.80);
+    dwcGas->AddElement(C_el, 0.0545);
+    dwcGas->AddElement(O_dwc, 0.1455);
     nist->FindOrBuildMaterial("G4_AIR");
     nist->FindOrBuildMaterial("G4_LEAD_OXIDE");           // Lead glass proxy
     nist->FindOrBuildMaterial("G4_Pb");
@@ -98,11 +105,12 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     auto worldPV = new G4PVPlacement(nullptr, G4ThreeVector(), worldLV, "World", nullptr, false, 0);
 
     // ===== GEOMETRY PARAMETERS =====
-    // Tracker planes: 300 µm silicon, 4×4 cm² active area
-    G4double trackerThick = 300.0*um;
-    G4double trackerXY    = 4.0*cm;
+    // DWC planes: 10 mm gas gap, 10×10 cm² active area
+    // (Delay Wire Chambers — standard BL4S tracking detectors)
+    G4double dwcThick = 10.0*mm;
+    G4double dwcXY    = 10.0*cm;
 
-    // Z positions along beam axis (beam enters at Z ~ -1m)
+    // Z positions along beam axis (beam enters at Z = -80 cm)
     G4double z_tracker1 = -50.0*cm;
     G4double z_tracker2 = -25.0*cm;
     // Target centered at Z = 0
@@ -111,28 +119,28 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     G4double z_calo     = 100.0*cm;
 
     // ===== TRACKER PLANES =====
-    auto trackerS = new G4Box("Tracker", trackerXY/2, trackerXY/2, trackerThick/2);
-    auto siliconMat = nist->FindOrBuildMaterial("G4_Si");
+    auto dwcS = new G4Box("DWC", dwcXY/2, dwcXY/2, dwcThick/2);
+    auto dwcMat = G4Material::GetMaterial("DWC_ArCO2");
 
-    // Tracker 1
-    fTracker1LV = new G4LogicalVolume(trackerS, siliconMat, "Tracker1LV");
-    fTracker1LV->SetVisAttributes(new G4VisAttributes(G4Colour::Blue()));
-    new G4PVPlacement(nullptr, G4ThreeVector(0, 0, z_tracker1), fTracker1LV, "Tracker1", worldLV, false, 0);
+    // DWC 1
+    fTracker1LV = new G4LogicalVolume(dwcS, dwcMat, "DWC1LV");
+    fTracker1LV->SetVisAttributes(new G4VisAttributes(G4Colour::Cyan()));
+    new G4PVPlacement(nullptr, G4ThreeVector(0, 0, z_tracker1), fTracker1LV, "DWC1", worldLV, false, 0);
 
-    // Tracker 2
-    fTracker2LV = new G4LogicalVolume(trackerS, siliconMat, "Tracker2LV");
-    fTracker2LV->SetVisAttributes(new G4VisAttributes(G4Colour::Blue()));
-    new G4PVPlacement(nullptr, G4ThreeVector(0, 0, z_tracker2), fTracker2LV, "Tracker2", worldLV, false, 0);
+    // DWC 2
+    fTracker2LV = new G4LogicalVolume(dwcS, dwcMat, "DWC2LV");
+    fTracker2LV->SetVisAttributes(new G4VisAttributes(G4Colour::Cyan()));
+    new G4PVPlacement(nullptr, G4ThreeVector(0, 0, z_tracker2), fTracker2LV, "DWC2", worldLV, false, 0);
 
-    // Tracker 3
-    fTracker3LV = new G4LogicalVolume(trackerS, siliconMat, "Tracker3LV");
-    fTracker3LV->SetVisAttributes(new G4VisAttributes(G4Colour::Blue()));
-    new G4PVPlacement(nullptr, G4ThreeVector(0, 0, z_tracker3), fTracker3LV, "Tracker3", worldLV, false, 0);
+    // DWC 3
+    fTracker3LV = new G4LogicalVolume(dwcS, dwcMat, "DWC3LV");
+    fTracker3LV->SetVisAttributes(new G4VisAttributes(G4Colour::Cyan()));
+    new G4PVPlacement(nullptr, G4ThreeVector(0, 0, z_tracker3), fTracker3LV, "DWC3", worldLV, false, 0);
 
-    // Tracker 4
-    fTracker4LV = new G4LogicalVolume(trackerS, siliconMat, "Tracker4LV");
-    fTracker4LV->SetVisAttributes(new G4VisAttributes(G4Colour::Blue()));
-    new G4PVPlacement(nullptr, G4ThreeVector(0, 0, z_tracker4), fTracker4LV, "Tracker4", worldLV, false, 0);
+    // DWC 4
+    fTracker4LV = new G4LogicalVolume(dwcS, dwcMat, "DWC4LV");
+    fTracker4LV->SetVisAttributes(new G4VisAttributes(G4Colour::Cyan()));
+    new G4PVPlacement(nullptr, G4ThreeVector(0, 0, z_tracker4), fTracker4LV, "DWC4", worldLV, false, 0);
 
     // ===== TARGET =====
     auto targetMat = nist->FindOrBuildMaterial(fTargetMaterial);
@@ -145,7 +153,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
         targetMat = nist->FindOrBuildMaterial("G4_POLYETHYLENE");
     }
 
-    auto targetS = new G4Box("Target", 5.0*cm, 5.0*cm, fTargetThickness/2);
+    auto targetS = new G4Box("Target", 5.0*cm, 5.0*cm, fTargetThickness/2);  // 10×10 cm² face
     fTargetLV = new G4LogicalVolume(targetS, targetMat, "TargetLV");
     fTargetLV->SetVisAttributes(new G4VisAttributes(G4Colour::Red()));
     new G4PVPlacement(nullptr, G4ThreeVector(0, 0, 0), fTargetLV, "Target", worldLV, false, 0);

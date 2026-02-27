@@ -249,7 +249,7 @@ This is not a problem — it's a *feature*. Students can quantify the nuclear co
 | **The gap tells a story** | Two separated clusters = proof the technique classifies material families. |
 | **PVC is the hero** | The most industrially relevant result (detecting the "problem plastic") falls right out of the physics. |
 | **Heritage adds creativity** | No prior BL4S team has bridged environmental + archaeological applications. |
-| **Facility-agnostic** | Works at CERN, DESY, or ELSA with standard tracking + scintillators. |
+| **Facility-agnostic** | Works at CERN, DESY, or ELSA with standard DWC tracking detectors. |
 | **Guaranteed result** | Signal-to-resolution is 20:1 minimum. Statistics need seconds, not hours. |
 | **Failure is interesting** | Every deviation from prediction teaches something. |
 | **Honest about limits** | PE≈PP overlap shows maturity, not weakness. |

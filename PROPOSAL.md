@@ -83,7 +83,7 @@ Our Geant4 simulations confirm that even PS vs PMMA needs fewer than 2,000 event
 <div align="center">
 <img src="docs/figures/setup_schematic.png" width="800" alt="Facility-agnostic BeamScan layout">
 
-*Beam → Scintillator → Tracker₁,₂ → **TARGET** → Tracker₃,₄ → Scintillator. Magnet and calorimeter are optional extensions.*
+*Beam (1–6 GeV/c) → DWC₁, DWC₂ → **TARGET** → DWC₃, DWC₄. Pb-glass calorimeter is an optional extension.*
 </div>
 
 This is **facility-agnostic** — works with DWCs at CERN T9, beam telescopes at DESY, or tracking detectors at ELSA. No magnetic spectrometer required for the core measurement.
