@@ -1,0 +1,52 @@
+# 🏺 Can MCS distinguish modern cement from traditional mineral mortar?
+#
+# Modern Portland cement has higher density and different
+# elemental composition compared to traditional mineral
+# mortars used historically (quartz + calcite mixtures).
+# If MCS can detect this difference, it may serve as a
+# non-destructive authentication tool for archaeological artifacts.
+
+author: "BeamScan Team"
+description: "Archaeological authenticity test: cement vs traditional mortar"
+
+beam:
+  particle: "e-"
+  momenta_GeV: [3.0, 6.0]
+  num_events: 15000
+
+materials:
+  - name: "Portland_Cement"
+    custom_mixture:
+      components:
+        - material: "G4_CALCIUM_OXIDE"
+          fraction: 0.65
+        - material: "G4_SILICON_DIOXIDE"
+          fraction: 0.20
+        - material: "G4_ALUMINUM_OXIDE"
+          fraction: 0.10
+        - material: "G4_FERRIC_OXIDE"
+          fraction: 0.05
+    density_g_cm3: 3.1
+    thickness_mm: 10.0
+
+  - name: "Traditional_Mortar"
+    custom_mixture:
+      components:
+        - material: "G4_SILICON_DIOXIDE"
+          fraction: 0.55
+        - material: "G4_CALCIUM_CARBONATE"
+          fraction: 0.40
+        - material: "G4_FERRIC_OXIDE"
+          fraction: 0.05
+    density_g_cm3: 2.4
+    thickness_mm: 10.0
+
+  - name: "River_Quartz"
+    geant4_name: "G4_SILICON_DIOXIDE"
+    thickness_mm: 10.0
+
+outputs:
+  highland_prediction: true
+  classification_plot: true
+  distribution_overlay: true
+  comparison_table: true
