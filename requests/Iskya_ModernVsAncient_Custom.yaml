@@ -1,0 +1,38 @@
+# 🔬 Can MCS distinguish modern cement from traditional mineral mixtures?
+#
+# We compare a traditional low-density mineral mixture
+# with modern Portland-type cement using explicit
+# radiation length (X0) and density values.
+#
+# Goal: evaluate if MCS can detect modern intervention
+# in archaeological objects in a non-destructive way.
+
+author: "Iskya"
+description: "Custom material comparison: modern cement vs traditional mineral mix"
+
+beam:
+  particle: "e-"
+  momenta_GeV: [2.0, 4.0, 6.0]
+  num_events: 15000
+
+materials:
+
+  - name: "Traditional_Mineral_Mix"
+    geant4_name: "CUSTOM_TRADITIONAL"
+    thickness_mm: 15
+    x0_cm: 25.0
+    rho: 2.3
+    category: "custom"
+
+  - name: "Modern_Cement"
+    geant4_name: "CUSTOM_CEMENT"
+    thickness_mm: 15
+    x0_cm: 12.5
+    rho: 2.8
+    category: "custom"
+
+outputs:
+  highland_prediction: true
+  classification_plot: true
+  distribution_overlay: true
+  comparison_table: true
