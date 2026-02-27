@@ -1,0 +1,160 @@
+{
+  "metadata": {
+    "description": "BeamScan material properties database",
+    "sources": [
+      "PDG Review of Particle Physics 2024",
+      "NIST XCOM",
+      "Geant4 NIST database"
+    ],
+    "units": {
+      "X0": "cm",
+      "density": "g/cm³",
+      "theta0_values": "mrad (Highland formula, 10 mm target)"
+    }
+  },
+  "materials": [
+    {
+      "name": "PE",
+      "full_name": "Polyethylene",
+      "formula": "(C₂H₄)ₙ",
+      "geant4_name": "G4_POLYETHYLENE",
+      "category": "plastic",
+      "X0_cm": 47.9,
+      "density_gcc": 0.94,
+      "Z_eff": 3.4,
+      "theta0_3GeV_10mm_mrad": 0.559,
+      "theta0_6GeV_10mm_mrad": 0.279,
+      "application": "Most common packaging plastic (bottles, bags, films)"
+    },
+    {
+      "name": "PP",
+      "full_name": "Polypropylene",
+      "formula": "(C₃H₆)ₙ",
+      "geant4_name": "G4_POLYPROPYLENE",
+      "category": "plastic",
+      "X0_cm": 47.4,
+      "density_gcc": 0.9,
+      "Z_eff": 3.4,
+      "theta0_3GeV_10mm_mrad": 0.562,
+      "theta0_6GeV_10mm_mrad": 0.281,
+      "application": "Food containers, bottle caps, automotive parts"
+    },
+    {
+      "name": "PS",
+      "full_name": "Polystyrene",
+      "formula": "(C₈H₈)ₙ",
+      "geant4_name": "G4_POLYSTYRENE",
+      "category": "plastic",
+      "X0_cm": 42.5,
+      "density_gcc": 1.05,
+      "Z_eff": 3.6,
+      "theta0_3GeV_10mm_mrad": 0.596,
+      "theta0_6GeV_10mm_mrad": 0.298,
+      "application": "Disposable cups, packaging foam, insulation"
+    },
+    {
+      "name": "Nylon",
+      "full_name": "Nylon 6,6",
+      "formula": "(C₁₂H₂₂N₂O₂)ₙ",
+      "geant4_name": "G4_NYLON-6-6",
+      "category": "plastic",
+      "X0_cm": 36.7,
+      "density_gcc": 1.14,
+      "Z_eff": 3.9,
+      "theta0_3GeV_10mm_mrad": 0.646,
+      "theta0_6GeV_10mm_mrad": 0.323,
+      "application": "Textiles, fishing nets, engineering parts"
+    },
+    {
+      "name": "PMMA",
+      "full_name": "Polymethyl methacrylate (Plexiglass)",
+      "formula": "(C₅H₈O₂)ₙ",
+      "geant4_name": "G4_PLEXIGLASS",
+      "category": "plastic",
+      "X0_cm": 34.4,
+      "density_gcc": 1.18,
+      "Z_eff": 4.0,
+      "theta0_3GeV_10mm_mrad": 0.669,
+      "theta0_6GeV_10mm_mrad": 0.335,
+      "application": "Transparent panels, lenses, dental prosthetics"
+    },
+    {
+      "name": "PET",
+      "full_name": "Polyethylene terephthalate",
+      "formula": "(C₁₀H₈O₄)ₙ",
+      "geant4_name": "G4_MYLAR",
+      "category": "plastic",
+      "X0_cm": 28.7,
+      "density_gcc": 1.38,
+      "Z_eff": 4.5,
+      "theta0_3GeV_10mm_mrad": 0.738,
+      "theta0_6GeV_10mm_mrad": 0.369,
+      "application": "Beverage bottles, food packaging, textiles (polyester)"
+    },
+    {
+      "name": "PVC",
+      "full_name": "Polyvinyl chloride",
+      "formula": "(C₂H₃Cl)ₙ",
+      "geant4_name": "G4_POLYVINYL_CHLORIDE",
+      "category": "plastic",
+      "X0_cm": 19.9,
+      "density_gcc": 1.3,
+      "Z_eff": 8.4,
+      "theta0_3GeV_10mm_mrad": 0.901,
+      "theta0_6GeV_10mm_mrad": 0.45,
+      "application": "Pipes, flooring, cable insulation — PROBLEM PLASTIC for recycling (releases HCl)"
+    },
+    {
+      "name": "SiO₂",
+      "full_name": "Fused quartz / silica",
+      "formula": "SiO₂",
+      "geant4_name": "G4_SILICON_DIOXIDE",
+      "category": "heritage",
+      "X0_cm": 12.29,
+      "density_gcc": 2.2,
+      "Z_eff": 10.8,
+      "theta0_3GeV_10mm_mrad": 1.17,
+      "theta0_6GeV_10mm_mrad": 0.585,
+      "application": "Quartz from the Sierras de Córdoba — material used by Comechingón peoples for tools and morteros"
+    },
+    {
+      "name": "CaCO₃",
+      "full_name": "Calcium carbonate (calcite / marble)",
+      "formula": "CaCO₃",
+      "geant4_name": "G4_CALCIUM_CARBONATE",
+      "category": "heritage",
+      "X0_cm": 8.7,
+      "density_gcc": 2.8,
+      "Z_eff": 12.6,
+      "theta0_3GeV_10mm_mrad": 1.411,
+      "theta0_6GeV_10mm_mrad": 0.705,
+      "application": "Marble sculpture, mortar/plaster, limestone buildings"
+    },
+    {
+      "name": "Al₂O₃",
+      "full_name": "Aluminium oxide (alumina / corundum)",
+      "formula": "Al₂O₃",
+      "geant4_name": "G4_ALUMINUM_OXIDE",
+      "category": "heritage",
+      "X0_cm": 7.1,
+      "density_gcc": 3.97,
+      "Z_eff": 11.2,
+      "theta0_3GeV_10mm_mrad": 1.575,
+      "theta0_6GeV_10mm_mrad": 0.787,
+      "application": "Ceramic reference material, gemstones (ruby, sapphire)"
+    },
+    {
+      "name": "Fe₂O₃",
+      "full_name": "Iron(III) oxide (hematite / red ochre)",
+      "formula": "Fe₂O₃",
+      "geant4_name": "G4_FERRIC_OXIDE",
+      "category": "heritage",
+      "X0_cm": 3.3,
+      "density_gcc": 5.24,
+      "Z_eff": 20.6,
+      "theta0_3GeV_10mm_mrad": 2.382,
+      "theta0_6GeV_10mm_mrad": 1.191,
+      "application": "Red ochre pigment (cave paintings), pottery glaze, geological reference"
+    }
+  ]
+}

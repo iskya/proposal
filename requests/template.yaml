@@ -1,0 +1,75 @@
+# ═══════════════════════════════════════════════════════════════
+# BeamScan Simulation Request
+# ═══════════════════════════════════════════════════════════════
+#
+# HOW TO USE:
+# 1. Copy this file to /requests/ with a descriptive name
+#    Example: requests/maria_pvc_vs_pet.yaml
+# 2. Fill in your parameters below
+# 3. Commit and push (or open a Pull Request)
+# 4. GitHub Actions will automatically:
+#    - Run Highland formula predictions (instant, ~30 seconds)
+#    - Run Geant4 Monte Carlo simulation (if enabled, ~5 minutes)
+#    - Generate comparison plots
+#    - Post results as a comment on your PR (or in /results/)
+#
+# ═══════════════════════════════════════════════════════════════
+
+# Who is running this? (your name — will appear on plots)
+author: "María García"
+
+# Short description of what you're investigating
+description: "Comparing PVC detection at different beam energies"
+
+# ─── Beam Settings ───
+beam:
+  particle: "e-"            # Options: e-, e+, pi+, pi-, proton, mu+, mu-
+  momenta_GeV: [3.0, 6.0]  # List of momenta to simulate (GeV/c)
+  num_events: 10000         # Events per configuration (1000 for quick, 50000 for publication)
+
+# ─── Target Materials ───
+# Pick from the materials list below, or use any Geant4 NIST material name
+materials:
+  - name: "PE"
+    geant4_name: "G4_POLYETHYLENE"
+    thickness_mm: 10.0
+
+  - name: "PVC"
+    geant4_name: "G4_POLYVINYL_CHLORIDE"
+    thickness_mm: 10.0
+
+  - name: "PET"
+    geant4_name: "G4_MYLAR"
+    thickness_mm: 10.0
+
+# ─── What to produce ───
+outputs:
+  highland_prediction: true    # Always fast — Highland formula calculation
+  geant4_simulation: false     # Set true for full Monte Carlo (slower, needs approval)
+  classification_plot: true    # 2D fingerprint plot
+  distribution_overlay: true   # Overlaid scattering angle distributions
+  comparison_table: true       # Numerical comparison table
+
+# ═══════════════════════════════════════════════════════════════
+# AVAILABLE MATERIALS (copy-paste into materials list above)
+# ═══════════════════════════════════════════════════════════════
+#
+# PLASTICS:
+#   - name: "PE"      geant4_name: "G4_POLYETHYLENE"         # X₀ = 47.9 cm
+#   - name: "PP"      geant4_name: "G4_POLYPROPYLENE"        # X₀ = 47.4 cm
+#   - name: "PS"      geant4_name: "G4_POLYSTYRENE"          # X₀ = 42.5 cm
+#   - name: "PMMA"    geant4_name: "G4_PLEXIGLASS"           # X₀ = 34.4 cm
+#   - name: "Nylon"   geant4_name: "G4_NYLON-6-6"            # X₀ = 36.7 cm
+#   - name: "PET"     geant4_name: "G4_MYLAR"                # X₀ = 28.7 cm
+#   - name: "PVC"     geant4_name: "G4_POLYVINYL_CHLORIDE"   # X₀ = 15.3 cm
+#
+# HERITAGE / GEOLOGICAL:
+#   - name: "SiO2"      geant4_name: "G4_SILICON_DIOXIDE"    # X₀ = 12.3 cm
+#   - name: "CaCO3"     geant4_name: "G4_CALCIUM_CARBONATE"  # X₀ = 10.7 cm
+#   - name: "Al2O3"     geant4_name: "G4_ALUMINUM_OXIDE"     # X₀ = 10.2 cm
+#   - name: "Fe2O3"     geant4_name: "G4_FERRIC_OXIDE"       # X₀ = 5.5 cm
+#
+# METALS (for contaminant studies):
+#   - name: "Aluminium" geant4_name: "G4_Al"                 # X₀ = 8.9 cm
+#   - name: "Iron"      geant4_name: "G4_Fe"                 # X₀ = 1.76 cm
+#   - name: "Lead"      geant4_name: "G4_Pb"                 # X₀ = 0.56 cm
