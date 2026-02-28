@@ -1,0 +1,7 @@
+material,geant4_name,category,X0_cm,rho_gcc,thickness_mm,p_GeV,theta0_mrad,dE_MeV
+Traditional_Mineral_Mix,CUSTOM_TRADITIONAL,custom,25.0,2.3,15,2.0,1.4876,6.90
+Traditional_Mineral_Mix,CUSTOM_TRADITIONAL,custom,25.0,2.3,15,4.0,0.7438,6.90
+Traditional_Mineral_Mix,CUSTOM_TRADITIONAL,custom,25.0,2.3,15,6.0,0.4959,6.90
+Modern_Cement,CUSTOM_CEMENT,custom,12.5,2.8,15,2.0,2.1658,8.40
+Modern_Cement,CUSTOM_CEMENT,custom,12.5,2.8,15,4.0,1.0829,8.40
+Modern_Cement,CUSTOM_CEMENT,custom,12.5,2.8,15,6.0,0.7219,8.40
