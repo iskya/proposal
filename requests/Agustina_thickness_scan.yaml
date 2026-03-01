@@ -1,0 +1,95 @@
+# 📏 How does scattering scale with thickness for different material classes?
+#
+# This analysis studies how Multiple Coulomb Scattering (MCS)
+# scales with material thickness for three representative classes:
+# an organic polymer (PMMA), a chlorinated plastic (PVC),
+# and an inorganic mineral (quartz).
+#
+# According to the Highland formula:
+#
+#    θ₀ ∝ √(x / X₀)
+#
+# angular dispersion should increase with the square root of thickness,
+# with different slopes depending on radiation length (X₀).
+
+author: Agustina
+description: "Thickness scan for organic, PVC, and inorganic materials"
+
+beam:
+  particle: "e-"
+  momenta_GeV: [4.0]
+  num_events: 10000
+
+materials:
+
+  # --- PMMA (Organic polymer) ---
+  - name: "PMMA_2mm"
+    geant4_name: "G4_PLEXIGLASS"
+    thickness_mm: 2.0
+
+  - name: "PMMA_5mm"
+    geant4_name: "G4_PLEXIGLASS"
+    thickness_mm: 5.0
+
+  - name: "PMMA_10mm"
+    geant4_name: "G4_PLEXIGLASS"
+    thickness_mm: 10.0
+
+  - name: "PMMA_20mm"
+    geant4_name: "G4_PLEXIGLASS"
+    thickness_mm: 20.0
+
+  - name: "PMMA_40mm"
+    geant4_name: "G4_PLEXIGLASS"
+    thickness_mm: 40.0
+
+
+  # --- PVC ---
+  - name: "PVC_2mm"
+    geant4_name: "G4_POLYVINYL_CHLORIDE"
+    thickness_mm: 2.0
+
+  - name: "PVC_5mm"
+    geant4_name: "G4_POLYVINYL_CHLORIDE"
+    thickness_mm: 5.0
+
+  - name: "PVC_10mm"
+    geant4_name: "G4_POLYVINYL_CHLORIDE"
+    thickness_mm: 10.0
+
+  - name: "PVC_20mm"
+    geant4_name: "G4_POLYVINYL_CHLORIDE"
+    thickness_mm: 20.0
+
+  - name: "PVC_40mm"
+    geant4_name: "G4_POLYVINYL_CHLORIDE"
+    thickness_mm: 40.0
+
+
+  # --- Quartz (Inorganic) ---
+  - name: "Quartz_2mm"
+    geant4_name: "G4_SILICON_DIOXIDE"
+    thickness_mm: 2.0
+
+  - name: "Quartz_5mm"
+    geant4_name: "G4_SILICON_DIOXIDE"
+    thickness_mm: 5.0
+
+  - name: "Quartz_10mm"
+    geant4_name: "G4_SILICON_DIOXIDE"
+    thickness_mm: 10.0
+
+  - name: "Quartz_20mm"
+    geant4_name: "G4_SILICON_DIOXIDE"
+    thickness_mm: 20.0
+
+  - name: "Quartz_40mm"
+    geant4_name: "G4_SILICON_DIOXIDE"
+    thickness_mm: 40.0
+
+
+outputs:
+  highland_prediction: true
+  classification_plot: false
+  distribution_overlay: true
+  comparison_table: true
