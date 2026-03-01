@@ -81,7 +81,7 @@ materials:
 # ─── What to produce ───
 outputs:
   highland_prediction: true
-  geant4_simulation: false
+  geant4_simulation: true
   classification_plot: true
   distribution_overlay: true
   comparison_table: true
