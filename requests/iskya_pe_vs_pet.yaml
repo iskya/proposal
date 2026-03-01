@@ -1,0 +1,33 @@
+# ♻️ Can MCS distinguish PE from PET?
+#
+# Polyethylene (PE) and polyethylene terephthalate (PET)
+# are widely used plastics in packaging and industry.
+# Although both are carbon-based polymers, PET contains
+# oxygen and has higher density, leading to a shorter
+# radiation length (X0).
+#
+# If Multiple Coulomb Scattering can separate them,
+# this could provide a non-destructive method for
+# plastic identification and recycling classification.
+
+author: "Iskya"
+description: "Polyethylene vs PET discrimination using MCS"
+
+beam:
+  particle: "e-"
+  momenta_GeV: [2.0, 4.0, 6.0]
+  num_events: 10000
+
+materials:
+  - name: "Polyethylene"
+    geant4_name: "G4_POLYETHYLENE"
+    thickness_mm: 10.0
+  - name: "PET (Mylar)"
+    geant4_name: "G4_MYLAR"
+    thickness_mm: 10.0
+
+outputs:
+  highland_prediction: true
+  classification_plot: true
+  distribution_overlay: true
+  comparison_table: true
