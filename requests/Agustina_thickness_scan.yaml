@@ -1,87 +1,29 @@
-# ─── BeamScan Thickness Scan ───
-# Investigating how target thickness affects scattering angle measurement
-# comparing a plastic baseline (PE), a problem plastic (PVC) and a heritage material (SiO2)
-# across 5 thicknesses from 0.5 to 50 mm
+author: Agustina
+description: "Thickness scan for organic, PVC, and inorganic materials"
 
-author:Agustina
-description: "Thickness scan: optimizing target thickness for best separation between PE, PVC and quartz (SiO2)"
-
-# ─── Beam Settings ───
 beam:
   particle: "e-"
-  momenta_GeV: [3.0, 6.0]
+  momenta_GeV: [4.0]
   num_events: 10000
 
-# ─── Target Materials ───
 materials:
+  
+name: "PMMA (organic polymer)"
+  geant4_name: "G4_PLEXIGLASS"
+  thickness_mm: [2.0, 5.0, 10.0, 20.0, 40.0]
 
-  # ── PE (plastic baseline) ──
-  - name: "PE_0.5mm"
-    geant4_name: "G4_POLYETHYLENE"
-    thickness_mm: 0.5
+  
+name: "PVC"
+  geant4_name: "G4_POLYVINYL_CHLORIDE"
+  thickness_mm: [2.0, 5.0, 10.0, 20.0, 40.0]
 
-  - name: "PE_3mm"
-    geant4_name: "G4_POLYETHYLENE"
-    thickness_mm: 3.0
+  
+name: "Quartz"
+  geant4_name: "G4_SILICON_DIOXIDE"
+  thickness_mm: [2.0, 5.0, 10.0, 20.0, 40.0]
 
-  - name: "PE_10mm"
-    geant4_name: "G4_POLYETHYLENE"
-    thickness_mm: 10.0
-
-  - name: "PE_25mm"
-    geant4_name: "G4_POLYETHYLENE"
-    thickness_mm: 25.0
-
-  - name: "PE_50mm"
-    geant4_name: "G4_POLYETHYLENE"
-    thickness_mm: 50.0
-
-  # ── PVC (problem plastic) ──
-  - name: "PVC_0.5mm"
-    geant4_name: "G4_POLYVINYL_CHLORIDE"
-    thickness_mm: 0.5
-
-  - name: "PVC_3mm"
-    geant4_name: "G4_POLYVINYL_CHLORIDE"
-    thickness_mm: 3.0
-
-  - name: "PVC_10mm"
-    geant4_name: "G4_POLYVINYL_CHLORIDE"
-    thickness_mm: 10.0
-
-  - name: "PVC_25mm"
-    geant4_name: "G4_POLYVINYL_CHLORIDE"
-    thickness_mm: 25.0
-
-  - name: "PVC_50mm"
-    geant4_name: "G4_POLYVINYL_CHLORIDE"
-    thickness_mm: 50.0
-
-  # ── SiO2 (heritage material — quartz) ──
-  - name: "SiO2_0.5mm"
-    geant4_name: "G4_SILICON_DIOXIDE"
-    thickness_mm: 0.5
-
-  - name: "SiO2_3mm"
-    geant4_name: "G4_SILICON_DIOXIDE"
-    thickness_mm: 3.0
-
-  - name: "SiO2_10mm"
-    geant4_name: "G4_SILICON_DIOXIDE"
-    thickness_mm: 10.0
-
-  - name: "SiO2_25mm"
-    geant4_name: "G4_SILICON_DIOXIDE"
-    thickness_mm: 25.0
-
-  - name: "SiO2_50mm"
-    geant4_name: "G4_SILICON_DIOXIDE"
-    thickness_mm: 50.0
-
-# ─── What to produce ───
 outputs:
   highland_prediction: true
-  geant4_simulation: true
-  classification_plot: true
+  classification_plot: false
   distribution_overlay: true
   comparison_table: true
