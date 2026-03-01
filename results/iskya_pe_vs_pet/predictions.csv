@@ -1,0 +1,7 @@
+material,geant4_name,category,X0_cm,rho_gcc,thickness_mm,p_GeV,theta0_mrad,dE_MeV
+Polyethylene,G4_POLYETHYLENE,plastic,47.9,0.94,10.0,2.0,0.8381,1.88
+Polyethylene,G4_POLYETHYLENE,plastic,47.9,0.94,10.0,4.0,0.4190,1.88
+Polyethylene,G4_POLYETHYLENE,plastic,47.9,0.94,10.0,6.0,0.2794,1.88
+PET (Mylar),G4_MYLAR,plastic,28.7,1.38,10.0,2.0,1.1074,2.76
+PET (Mylar),G4_MYLAR,plastic,28.7,1.38,10.0,4.0,0.5537,2.76
+PET (Mylar),G4_MYLAR,plastic,28.7,1.38,10.0,6.0,0.3691,2.76
