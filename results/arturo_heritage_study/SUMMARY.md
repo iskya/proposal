@@ -2,7 +2,7 @@
 
 **Author:** ArturoS (example)  
 **Description:** Heritage materials from the Sierras de Córdoba: minerals and pigments  
-**Generated:** 2026-02-27 23:21 UTC  
+**Generated:** 2026-02-28 23:53 UTC  
 **Method:** Highland formula (analytical)
 
 ## Beam Settings
