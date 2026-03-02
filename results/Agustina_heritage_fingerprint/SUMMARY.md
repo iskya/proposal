@@ -2,7 +2,7 @@
 
 **Author:** Agustina  
 **Description:** Heritage fingerprint: distinguishing the minerals of Sierra de Comechingones non-destructively  
-**Generated:** 2026-03-01 03:27 UTC  
+**Generated:** 2026-03-02 14:21 UTC  
 **Method:** Highland formula (analytical)
 
 ## Beam Settings

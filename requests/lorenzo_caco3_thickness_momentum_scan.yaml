@@ -1,0 +1,43 @@
+
+author: "Lorenzo Medina Giovanini"
+
+# Short description of what you're investigating
+description: "2D scan of CaCO3 (calcite/marble): sweeping thickness from 5 to 25 mm at three momenta (3.0, 4.5, 6.0 GeV/c). Goal: map how scattering angle depends jointly on sample thickness and beam momentum for a heritage/geological reference material."
+
+# ─── Beam Settings ───
+beam:
+  particle: "e-"            # Options: e-, e+, pi+, pi-, proton, mu+, mu-
+  momenta_GeV: [3.0, 4.5, 6.0]  # List of momenta to simulate (GeV/c)
+  num_events: 10000         # Events per configuration (1000 for quick, 50000 for publication)
+
+# ─── Target Materials ───
+# Pick from the materials list below, or use any Geant4 NIST material name
+materials:
+  - name: "CaCO3"
+    geant4_name: "G4_CALCIUM_CARBONATE"
+    thickness_mm: 5.0
+
+  - name: "CaCO3"
+    geant4_name: "G4_CALCIUM_CARBONATE"
+    thickness_mm: 10.0
+
+  - name: "CaCO3"
+    geant4_name: "G4_CALCIUM_CARBONATE"
+    thickness_mm: 15.0
+
+  - name: "CaCO3"
+    geant4_name: "G4_CALCIUM_CARBONATE"
+    thickness_mm: 20.0
+
+  - name: "CaCO3"
+    geant4_name: "G4_CALCIUM_CARBONATE"
+    thickness_mm: 25.0
+
+# ─── What to produce ───
+outputs:
+  highland_prediction: true    # Always fast — Highland formula calculation
+  geant4_simulation: false     # Set true for full Monte Carlo (slower, needs approval)
+  classification_plot: true    # 2D fingerprint plot
+  distribution_overlay: true   # Overlaid scattering angle distributions
+  comparison_table: true       # Numerical comparison table
+

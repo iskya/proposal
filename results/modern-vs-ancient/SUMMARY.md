@@ -2,7 +2,7 @@
 
 **Author:** Iskya  
 **Description:** Custom material comparison: modern cement vs traditional mineral mix  
-**Generated:** 2026-02-28 23:53 UTC  
+**Generated:** 2026-03-02 14:21 UTC  
 **Method:** Highland formula (analytical)
 
 ## Beam Settings

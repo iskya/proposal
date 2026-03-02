@@ -2,7 +2,7 @@
 
 **Author:** Jeremías Álvarez  
 **Description:** Complete 1–7 GeV energy scan for multiple scattering comparison across all available materials (10k events per configuration)  
-**Generated:** 2026-03-01 00:14 UTC  
+**Generated:** 2026-03-02 14:21 UTC  
 **Method:** Highland formula (analytical)
 
 ## Beam Settings

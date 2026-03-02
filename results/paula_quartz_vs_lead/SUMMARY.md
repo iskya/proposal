@@ -2,7 +2,7 @@
 
 **Author:** Paula  
 **Description:** Sensitivity study: Detecting thin lead (Pb) veins within a quartz (SiO2) matrix using Multiple Coulomb Scattering (MCS).  
-**Generated:** 2026-03-01 15:48 UTC  
+**Generated:** 2026-03-02 14:21 UTC  
 **Method:** Highland formula (analytical)
 
 ## Beam Settings

@@ -2,7 +2,7 @@
 
 **Author:** Iskya  
 **Description:** Polyethylene vs PET discrimination using MCS  
-**Generated:** 2026-03-01 00:01 UTC  
+**Generated:** 2026-03-02 14:21 UTC  
 **Method:** Highland formula (analytical)
 
 ## Beam Settings

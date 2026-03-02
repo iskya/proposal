@@ -2,7 +2,7 @@
 
 **Author:** Tomás Blanco  
 **Description:** Comparative scattering analysis between Fe2O3 and Aluminium at multiple beam energies  
-**Generated:** 2026-03-02 14:34 UTC  
+**Generated:** 2026-03-02 14:37 UTC  
 **Method:** Highland formula (analytical)
 
 ## Beam Settings
