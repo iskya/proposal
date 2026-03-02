@@ -1,22 +1,24 @@
-# BeamScan: A Particle-Beam Material Classifier — From Recycling to Heritage Science
+# BeamScan: A Particle-Beam Material Classifier: From Recycling to Heritage Science
 
 ## 1. Motivation to Participate (~116 words)
 
-We are students and teachers from Instituto San Francisco de Asís in Santa Rosa de Calamuchita, Córdoba, Argentina. Two thousand years ago, the Comechingón people carved and shaped the rock of our region — and the artefacts preserved in our local museum still cannot be studied without risking damage. Today, mixed plastic waste arrives at recycling facilities where a single piece of PVC, invisible to the naked eye, can contaminate and ruin the entire batch. Two problems, two thousand years apart, the same challenge: characterising a material without destroying it. Particle physics offers one answer for both: multiple Coulomb scattering reveals atomic composition through deflection angles alone. Participating in BL4S means we can finally prove it works.
+We are students and teachers from Instituto San Francisco de Asís in Santa Rosa de Calamuchita, Córdoba, Argentina. Two thousand years ago, the Comechingón people carved and shaped the rock of our region and the artefacts preserved in our local museum still cannot be studied without risking damage. Today, mixed plastic waste arrives at recycling facilities where a single piece of PVC, invisible to the naked eye, can contaminate and ruin the entire batch. Two problems, two thousand years apart, the same challenge: characterising a material without destroying it. Particle physics offers one answer for both: multiple Coulomb scattering reveals atomic composition through deflection angles alone. Participating in BL4S means we can finally prove it works.
 
 ---
 
-## 2. Experiment Idea (~752 words)
+## 2. Experiment Idea (~830 words)
 
 ### The Question
 
-Can we build a "BeamScan Atlas" — a classification chart that identifies materials by measuring how charged particles scatter through them? We aim to demonstrate this for two real-world domains in one experiment: identifying plastics for recycling quality control and classifying geological reference materials relevant to heritage science.
+Can we build a "BeamScan Atlas": a classification chart that identifies materials by measuring how charged particles scatter through them? We aim to demonstrate this for two real-world domains in one experiment: identifying plastics for recycling quality control and classifying geological reference materials relevant to heritage science.
 
 ### The Physics
 
-When a charged particle travels through matter at GeV-scale energies, it does not go straight — it deflects slightly each time it passes near an atomic nucleus. The cumulative effect of thousands of these tiny deflections is called multiple Coulomb scattering (MCS). The resulting angular spread θ₀ follows the Highland formula:
+When a charged particle travels through matter at GeV-scale energies, it does not go straight but it deflects slightly each time it passes near an atomic nucleus. The cumulative effect of thousands of these tiny deflections is called multiple Coulomb scattering (MCS). The resulting angular spread θ₀ follows the Highland formula:
 
 $$\theta_0 \approx \frac{13.6 \text{ MeV}}{p\beta c} \sqrt{\frac{x}{X_0}} \left[1 + 0.038 \ln\left(\frac{x}{X_0}\right)\right]$$
+
+where *p* is the beam momentum, *βc* the particle velocity, *x* the target thickness, and *X₀* the material radiation length.
 
 ### Predicted Separation
 
@@ -30,7 +32,7 @@ The gap between both families is itself the scientific result — it proves MCS 
 Our core measurement requires only four Delay Wire Chambers (DWCs) and a target holder — standard equipment at all BL4S facilities:
 Beam (1–6 GeV/c) → DWC₁, DWC₂ → TARGET → DWC₃, DWC₄ → Pb-glass calorimeter (optional).
 Two trackers upstream measure the incoming particle direction. Two downstream measure the direction after the target.
-Subtracting the beam's natural divergence — measured in dedicated no-target runs — we extract the scattering signal from the material alone. The layout works with Delay Wire Chambers at CERN, beam telescopes at DESY, and the available tracking detectors at ELSA.
+Subtracting the beam's natural divergence (measured in dedicated no-target runs) we extract the scattering signal from the material alone. The layout works with Delay Wire Chambers at CERN, beam telescopes at DESY, and the available tracking detectors at ELSA.
 
 ### Targets and Facility Considerations
 
@@ -51,17 +53,17 @@ A measured classification table and plot of θ₀ (and extracted X₀) for each 
 ### Simulation and Open Science
 
 We have built a Geant4 Monte Carlo simulation of the full experiment, published in a public GitHub repository. Students contribute by editing simple YAML files and instantly seeing updated predictions — no C++ or Geant4 needed. Every figure in this proposal can be reproduced from the repository.
-Our simulations (Geant4 11.3.2, FTFP_BERT, 2,000 events per configuration) validate the Highland predictions: across 10 of 11 materials at two momenta, Geant4 consistently exceeds Highland by 12 ± 3%, attributable to nuclear elastic scattering that the analytic formula omits. The exception is Fe₂O₃, where the ratio rises to ~1.4–1.5 — directly revealing the larger hadronic cross-section of iron nuclei, itself a measurable result from the same setup
+Our simulations (Geant4 11.3.2, FTFP_BERT, 2,000 events per configuration) validate the Highland predictions: across 10 of 11 materials at two momenta, Geant4 consistently exceeds Highland by 12 ± 3%, attributable to nuclear elastic scattering that the analytic formula omits. The exception is Fe₂O₃, where the ratio rises to ~1.4–1.5, directly revealing the larger hadronic cross-section of iron nuclei, itself a measurable result from the same setup.
 
 ---
 
-## 3. What We Hope to Take Away (~100 words)
+## 3. What We Hope to Take Away (~95 words)
 
 We want to return to Córdoba with three things: a validated BeamScan Atlas proving that particle beams can classify materials non-destructively; the experience of designing, running, and analysing a real experiment at a world-class facility; and a story to share. If students from Argentina can use a CERN beamline to help solve recycling challenges and study their country's archaeological heritage, it shows that fundamental physics belongs to everyone. We will share our results with local recycling cooperatives, schools, and museums — and publish everything openly so others can build on our work.
 
 ---
 
-## Outreach Activity (optional, ~200 words)
+## Outreach Activity (optional, ~145 words)
 
 Before submitting this proposal, our team organised a "Physics Meets the Street" event at a recycling cooperative in Córdoba. We brought samples of different plastics and demonstrated — using simple density-sorting and light-transmission tests — how difficult it is to distinguish PE from PP or detect PVC contamination by eye. We explained our BL4S idea: that accelerator particles can "see" the atoms inside a material, not just the surface. Workers were fascinated that CERN science could connect to their daily sorting challenges.
 If selected, we will expand this into a bilingual workshop series: "Del acelerador al reciclaje" (From the Accelerator to Recycling). We will bring our BeamScan Atlas to schools and cooperatives across Córdoba, explaining the physics behind each data point. We will publish the Geant4 simulation and Spanish-language tutorials so students across Latin America can run their own predictions and extend the atlas with new materials.
