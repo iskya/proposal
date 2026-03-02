@@ -15,7 +15,8 @@ Can we build a "BeamScan Atlas" — a classification chart that identifies mater
 ### The Physics
 
 When a charged particle travels through matter at GeV-scale energies, it does not go straight — it deflects slightly each time it passes near an atomic nucleus. The cumulative effect of thousands of these tiny deflections is called multiple Coulomb scattering (MCS). The resulting angular spread θ₀ follows the Highland formula:
-<img width="940" height="538" alt="θ₀ ≈ (13 6 MeV  p) · √(xX₀) ·  1 + 0 038 · ln(xX₀)" src="https://github.com/user-attachments/assets/a235afa4-a6a9-4aad-b639-27e31292b99e" />
+
+$$\theta_0 \approx \frac{13.6 \text{ MeV}}{p\beta c} \sqrt{\frac{x}{X_0}} \left[1 + 0.038 \ln\left(\frac{x}{X_0}\right)\right]$$
 
 ### Predicted Separation
 
@@ -28,12 +29,12 @@ The gap between both families is itself the scientific result — it proves MCS 
 
 Our core measurement requires only four Delay Wire Chambers (DWCs) and a target holder — standard equipment at all BL4S facilities:
 Beam (1–6 GeV/c) → DWC₁, DWC₂ → TARGET → DWC₃, DWC₄ → Pb-glass calorimeter (optional).
-Two trackers upstream measure the incoming particle direction. Two downstream measure the direction after the target. Subtracting the beam's natural divergence — measured in dedicated no-target runs — we extract the scattering signal from the material alone. The layout works with Delay Wire Chambers at CERN, beam telescopes at DESY, and the available tracking detectors at ELSA.
+Two trackers upstream measure the incoming particle direction. Two downstream measure the direction after the target.
+Subtracting the beam's natural divergence — measured in dedicated no-target runs — we extract the scattering signal from the material alone. The layout works with Delay Wire Chambers at CERN, beam telescopes at DESY, and the available tracking detectors at ELSA.
 
 ### Targets and Facility Considerations
 
 CERN and DESY accept only non-combustible targets; ELSA also permits combustible materials. Our plan adapts accordingly: **at ELSA** we run the full set — plastics (PE, PP, PS, PMMA, PET, Nylon, PVC) plus geological references (quartz, calcite, alumina, iron oxide), including the PVC "hero result." **At CERN or DESY** we run the non-combustible set — geological references plus graphite and metal foils as low-Z anchors — still spanning a wide X₀ range and demonstrating the full classifier concept.
-
 All targets are solid samples in an aluminium holder. We will provide safety data sheets and coordinate with facility safety officers.
 
 ### Measurement Program
@@ -63,5 +64,4 @@ We want to return to Córdoba with three things: a validated BeamScan Atlas prov
 ## Outreach Activity (optional, ~200 words)
 
 Before submitting this proposal, our team organised a "Physics Meets the Street" event at a recycling cooperative in Córdoba. We brought samples of different plastics and demonstrated — using simple density-sorting and light-transmission tests — how difficult it is to distinguish PE from PP or detect PVC contamination by eye. We explained our BL4S idea: that accelerator particles can "see" the atoms inside a material, not just the surface. Workers were fascinated that CERN science could connect to their daily sorting challenges.
-
 If selected, we will expand this into a bilingual workshop series: "Del acelerador al reciclaje" (From the Accelerator to Recycling). We will bring our BeamScan Atlas to schools and cooperatives across Córdoba, explaining the physics behind each data point. We will publish the Geant4 simulation and Spanish-language tutorials so students across Latin America can run their own predictions and extend the atlas with new materials.
